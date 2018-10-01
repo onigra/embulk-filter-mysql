@@ -11,4 +11,4 @@ services:
     volumes:
       - ./tmp/mysql:/var/lib/mysql
       - ./test/initdb.d:/docker-entrypoint-initdb.d
-    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci --default-authentication-plugin=mysql_native_password
