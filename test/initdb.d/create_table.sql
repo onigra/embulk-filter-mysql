@@ -9,5 +9,8 @@ CREATE TABLE IF NOT EXISTS tasks(
 INSERT INTO tasks VALUES
   (1, 'foo'),
   (2, 'bar'),
-  (3, 'baz')
+  (3, 'baz'),
+  (4,  null),
+  (5, 'fog'),
+  (6,  null)
 ;
