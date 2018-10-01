@@ -1,0 +1,33 @@
+exec:
+  min_output_tasks: 1
+in:
+  type: mysql
+  host: 127.0.0.1
+  user: root
+  password: root
+  database: sample
+  query: |
+    select
+      id
+    from
+      tasks
+filters:
+  - type: mysql
+    host: 127.0.0.1
+    user: root
+    password: root
+    database: sample
+    keep_input: true
+    query: |
+      select
+        id as 'code',
+        memo
+      from
+        tasks
+      where
+        id = ?
+    params:
+      - id
+out:
+  type: stdout
+
