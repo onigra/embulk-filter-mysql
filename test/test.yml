@@ -8,7 +8,7 @@ in:
   database: sample
   query: |
     select
-      id
+      memo
     from
       tasks
 filters:
@@ -21,13 +21,13 @@ filters:
     query: |
       select
         id as 'code',
-        memo
+        memo as 'foom'
       from
         tasks
       where
-        id = ?
+        memo = ?
     params:
-      - id
+      - memo
 out:
   type: stdout
 
