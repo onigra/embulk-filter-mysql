@@ -65,7 +65,7 @@ module Embulk
       def add(page)
         page.each do |record|
           hash = Hash[in_schema.names.zip(record)]
-          prepare_params = @params ? @params.map{ |param| hash[param] } : []
+          prepare_params = @params ? @params.map { |param| hash[param] } : []
           query_results = @statement.execute(*prepare_params)
 
           if query_results.num_rows == 0
