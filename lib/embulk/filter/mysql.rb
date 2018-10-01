@@ -69,7 +69,7 @@ module Embulk
           query_results = @statement.execute(*prepare_params)
 
           if query_results.num_rows == 0
-            result = [nil]
+            result = [nil] * query_results.field_count
             result = record + result if @keep_input
             page_builder.add(result)
           else
