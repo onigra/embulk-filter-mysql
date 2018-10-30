@@ -67,13 +67,20 @@ module Embulk
           hash = Hash[in_schema.names.zip(record)]
           prepare_params = @params ? @params.map{ |param| hash[param] } : []
           query_results = @statement.execute(*prepare_params)
-          query_results.each do |values|
-            converted = []
-            converted = record + converted if @keep_input
-            values.each do |value|
-              converted << cast(value)
+
+          if query_results.num_rows == 0
+            result = [nil] * query_results.field_count
+            result = record + result if @keep_input
+            page_builder.add(result)
+          else
+            query_results.each do |values|
+              converted = []
+              converted = record + converted if @keep_input
+              values.each do |value|
+                converted << cast(value)
+              end
+              page_builder.add(converted)
             end
-            page_builder.add(converted)
           end
         end
       end
