@@ -52,7 +52,7 @@ module Embulk
 
       def init
         @connection = ::Mysql.real_connect(task['host'], task['user'], task['password'], task['database'], task['port'])
-        @connection = 'utf8'
+        @connection.set_character_set 'utf8'
         @statement = @connection.prepare(task['query'])
         @params = task['params']
         @keep_input = task['keep_input']
